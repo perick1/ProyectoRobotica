@@ -4,6 +4,13 @@ import cv2
 
 #----------------------------------------------
 def getMask(img_cut):
+    """
+    Recibe pantallazo solo del tablero y crea máscara
+    :params np.array img:
+        pantallazo
+    :returns:
+        mask: mascara binaria
+    """
     img_hsv = cv2.cvtColor(img_cut,cv2.COLOR_RGB2HSV)
 
     lower_hsv = np.array([0,70,200])
@@ -19,30 +26,33 @@ def getMask(img_cut):
     return mask1
 
 #----------------------------------------------
-def getShape1(mask_cut):
-    Ly = max(mask_cut.shape)
-    Lx1 = min(mask_cut.shape)
-    Lx2 = Ly - Lx1
-    NoSquare = Lx2 > 50
+def getShape(mask_cut):
+    """
+    Recibe mascara solo del tablero y retorna dimensiones del tablero
+    :params np.array img:
+        mascara binaria
+    :returns:
+        shape: tupla con el tamaño del tablero (losetas horizontales, losetas verticales)
+    """
+    pass
 
-    Lx = (Lx1,Lx2)
-    Lxl = max (Lx)
-    Lxc = min(Lx)
+def getPieces(img_cut, dimentions):
+    """
+    Recibe pantallazo solo del tablero y crea máscara
+    :params np.array img:
+        pantallazo
+    :returns:
+        pieces: lista con losetas recortadas de tamaño 70 x 70 px
+    """
 
-    if NoSquare:
-        Ntotal = 30
-        error1 = np.zeros((2,Ntotal))
-        error2 = np.zeros((2,Ntotal))
-        for i in range(Ntotal):
-            leng = round (Lxc / (i + 1))
-            entero1 = Ly // leng
-            real1 = Ly / leng
-            error1[0,i] = Ly % leng
-            error1[1,i] =  error1[0,i] - entero1
+    tile_size = 70
+    new_dim = dimentions * tile_size
+    resized = cv2.resize(img_cut, new_dim, interpolation = cv2.INTER_AREA)
 
-            leng = round (Lxl / (i + 1))
-            entero2 = Ly // leng
-            real2 = Ly / leng
-            error2[0,i] = Ly % leng
-            error2[1,i] =  error2[0,i] - entero2
-    return [error1,error2]
+    pieces = list()
+    for i in range(dimentions[0]):
+        for j in range(dimentions[1]):
+            tile = resized[i*tile_size:(i+1)*tile_size,
+                           j*tile_size:(j+1)*tile_size,:]
+            pieces.append(tile)
+    return pieces
