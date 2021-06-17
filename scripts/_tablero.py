@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import cv2
 
 #---------------------------------------------------------
-def GetEdges(img):
+def getEdges(img):
     """
     Crea máscara y obtiene bordes dentro de un pantallazo
 
@@ -38,7 +38,7 @@ def GetEdges(img):
     return [mask,edges]
 
 #---------------------------------------------------------
-def GetBiggestContour(mask):
+def getBiggestContour(mask):
     """
     Recibe una mascara, identifica objetos dentro y entrega
     el contorno más grande encotrado
