@@ -19,7 +19,7 @@ def getMask(img_cut):
 
     lower_hsv = np.array([0,70,100])
     upper_hsv = np.array([35,150,130])
-    mask3 = cv2.inRange(Img_hsv,lower_hsv,upper_hsv)
+    mask3 = cv2.inRange(img_hsv,lower_hsv,upper_hsv)
 
     mask1 = (mask1+mask3 - 255) * 255
 
