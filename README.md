@@ -13,3 +13,10 @@ El algoritmo realiza capturas de pantalla y en base a esto determina la ubicaci�
 
 
 ## Obtener piezas individuales
+
+
+## Extracción de características (5 distintos)
+
+## Matchers
+
+## Resultados
