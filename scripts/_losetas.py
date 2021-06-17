@@ -32,7 +32,7 @@ def getShape(mask_cut):
     :params np.array img:
         mascara binaria
     :returns:
-        shape: tupla con el tamaño del tablero (losetas horizontales, losetas verticales)
+        shape: np.array con el tamaño del tablero (losetas horizontales, losetas verticales)
     """
     pass
 
@@ -47,6 +47,7 @@ def getPieces(img_cut, dimentions):
 
     tile_size = 70
     new_dim = dimentions * tile_size
+    new_dim = (new_dim[0],new_dim[1])
     resized = cv2.resize(img_cut, new_dim, interpolation = cv2.INTER_AREA)
 
     pieces = list()
