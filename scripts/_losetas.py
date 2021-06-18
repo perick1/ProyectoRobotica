@@ -29,7 +29,7 @@ def getMask(img_cut):
 def getShape(mask_cut):
     """
     Recibe mascara solo del tablero y retorna dimensiones del tablero
-    :params np.array img:
+    :params np.array img::
         mascara binaria
     :returns:
         shape: np.array con el tamaño del tablero (losetas horizontales, losetas verticales)
