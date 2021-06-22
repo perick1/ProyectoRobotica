@@ -3,6 +3,6 @@
 
 #from scripts._tools import *
 
-from scripts._tablero import *#getBoard, plotBoard
-from scripts._losetas import *#getPieces, plotMask
+from utils._tablero import *#getBoard, plotBoard
+from utils._losetas import *#getPieces, plotMask
 #from utils.chess import ChessBoard
