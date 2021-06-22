@@ -51,9 +51,9 @@ def getPieces(img_cut, dimentions):
     resized = cv2.resize(img_cut, new_dim, interpolation = cv2.INTER_AREA)
 
     pieces = list()
-    for i in range(dimentions[0]):
-        for j in range(dimentions[1]):
+    for i in range(dimentions[1]):
+        for j in range(dimentions[0]):
             tile = resized[i*tile_size:(i+1)*tile_size,
                            j*tile_size:(j+1)*tile_size,:]
             pieces.append(tile)
-    return pieces
+    return [resized,pieces]
