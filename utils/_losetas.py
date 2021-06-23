@@ -56,4 +56,4 @@ def getPieces(img_cut, dimentions):
             tile = resized[i*tile_size:(i+1)*tile_size,
                            j*tile_size:(j+1)*tile_size,:]
             pieces.append(tile)
-    return [resized,pieces]
+    return pieces

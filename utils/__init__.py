@@ -5,4 +5,5 @@
 
 from utils._tablero import *#getBoard, plotBoard
 from utils._losetas import *#getPieces, plotMask
+from utils._caracteristicas import *
 #from utils.chess import ChessBoard
