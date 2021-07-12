@@ -14,7 +14,7 @@ Este contador solo se aplica para el juego original (sin expnsiones) que está c
 
 A continuación se presenta cadatipo de loseta en el juego, señalando la codificación de estas y la cantidad en el juego.
 
-![banner2](bin/losetas.png){:height="700px" width="360px"}
+![banner2](bin/losetas.png)
 
 ## Identificar y aislar tablero
 
