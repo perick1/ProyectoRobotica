@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from scipy.spatial import distance
 import cv2
 
-def getDistanceMatrix(XA,XB,metric):
+def getDistanceMatrix(XA,XB,DBnames,metric):
     """
     Recibe 2 matrices con características y retorna distancia metric de todas
     las combinaciones.
@@ -15,10 +15,14 @@ def getDistanceMatrix(XA,XB,metric):
     :returns:
         shape: Pandas dataframe (len(XA),len(XB))
     """
+    metrics = ['euclidean','cityblock','cosine','correlation',
+                        'chebyshev','canberra','braycurtis']
+    metric = metrics[metric]
     distances = distance.cdist( XA = XA.astype(float),
                                 XB = XB.astype(float),
                                 metric = metric)
-    return pd.DataFrame(data=distances, index = np.arange(len(XA)), columns = np.arange(len(XB)))
+    cols = DBnames
+    return pd.DataFrame(data=distances, index = np.arange(len(XA)), columns = cols)
 
 def getOrder(distances):
     """
@@ -45,7 +49,7 @@ def getOrder(distances):
         Ns[k] = names_n
     return [pd.DataFrame(data=X , index = idx), pd.DataFrame(data=Ns, index = idx)]
 
-def Examples(tiles,idx,Ns,Ds):
+def Examples(tiles,tilesDB,NamesDB,idx,Ns,Ds):
     fig, axs = plt.subplots(nrows=3,ncols=5,figsize=(8, 5))
     axx = axs.flat
     ax0 = axx[2]
@@ -53,7 +57,7 @@ def Examples(tiles,idx,Ns,Ds):
     axx[1].set_axis_off()
     tile_original = tiles[idx]
     ax0.imshow(tile_original)
-    ax0.set_title('WOLAS')
+    ax0.set_title('Loseta de Consulta')
     ax0.set_axis_off()
     axx[3].set_axis_off()
     axx[4].set_axis_off()
@@ -63,10 +67,11 @@ def Examples(tiles,idx,Ns,Ds):
     d = Ds.loc[idx].values
     for i in range(10):
         ax = axx[i+5]
-        img = tiles[n[i]]
-        ax.imshow(img)
-        print(d[i])
-        #ax.set_title(str(n[i]))
+        name = n[i]
+        img = tilesDB[NamesDB==name]
+        ax.imshow(img[0])
+        print(round(d[i],3))
+        ax.set_title('clase: '+str(n[i][-8:-6]))
         ax.text(3, 3, str(i+1),color='white',weight='bold',size=18,ha='left',va='top',
             bbox=dict(boxstyle="round",
                        ec=(35/m, 167/m, 168/m),
