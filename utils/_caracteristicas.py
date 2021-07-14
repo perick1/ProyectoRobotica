@@ -3,7 +3,7 @@ import cv2
 from tensorflow.keras.applications.vgg16 import VGG16
 from tensorflow.keras.applications.vgg16 import preprocess_input
 
-def getFeauresCNN(tiles):
+def getFeauresCNN(tiles,model):
     """
     Recibe lista con losetas y retorna caracteristicas con VGG16
     :params np.array img::
@@ -11,7 +11,8 @@ def getFeauresCNN(tiles):
     :returns:
         shape: np.array (N de losetas, 1000)
     """
-    model = VGG16(weights='imagenet',include_top = True)
+    #global model
+    #model = VGG16(weights='imagenet',include_top = True)
     N = 1000
     Ntiles = len(tiles)
     F = np.zeros((Ntiles,N))
