@@ -24,4 +24,4 @@ def getDatabase(path):
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         tiles.append(img)
         names.append(name)
-    return [tiles,names]
+    return [np.array(tiles),np.array(names)]

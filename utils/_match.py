@@ -65,6 +65,7 @@ def Examples(tiles,tilesDB,NamesDB,idx,Ns,Ds):
 
     n = Ns.loc[idx].values
     d = Ds.loc[idx].values
+    print('****Top 10 Distancias****')
     for i in range(10):
         ax = axx[i+5]
         name = n[i]
@@ -78,4 +79,4 @@ def Examples(tiles,tilesDB,NamesDB,idx,Ns,Ds):
                        fc=(25/m, 135/m, 136/m),))
         ax.set_axis_off()
     fig.tight_layout()
-    plt.show()
+    plt.show(block=False)
