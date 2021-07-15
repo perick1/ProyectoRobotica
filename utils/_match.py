@@ -49,6 +49,19 @@ def getOrder(distances):
         Ns[k] = names_n
     return [pd.DataFrame(data=X , index = idx), pd.DataFrame(data=Ns, index = idx)]
 
+def getMatch(tiles,tilesDB,NamesDB,Ns,Ds):
+    ns = Ns.iloc[:,0].values
+    ds = Ds.iloc[:,0].values
+    DM = []
+    for i in range(len(ns)):
+        tile = tiles[i]
+        name = ns[i]
+        tile_match = tilesDB[NamesDB==name]
+        clase = name[-8:-6]
+        data_match = [tile ,tile_match ,name ,clase]
+        DM.append(data_match)
+    return DM
+
 def Examples(tiles,tilesDB,NamesDB,idx,Ns,Ds):
     fig, axs = plt.subplots(nrows=3,ncols=5,figsize=(8, 5))
     axx = axs.flat
