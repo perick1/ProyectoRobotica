@@ -58,7 +58,8 @@ def getMatch(tiles,tilesDB,NamesDB,Ns,Ds):
         name = ns[i]
         tile_match = tilesDB[NamesDB==name]
         clase = name[-8:-6]
-        data_match = [tile ,tile_match ,name ,clase]
+        sentido = name[-6:-4]
+        data_match = [tile ,tile_match ,name ,clase,sentido]
         DM.append(data_match)
     return DM
 

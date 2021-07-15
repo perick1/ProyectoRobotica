@@ -57,3 +57,19 @@ def getPieces(img_cut, dimentions):
                            j*tile_size:(j+1)*tile_size,:]
             pieces.append(tile)
     return np.array(pieces)
+
+def getDimentions(iter_alto, iter_ancho, ratio):
+    iter_ratio = iter_alto/iter_ancho
+    iter_ratio_r = round(iter_ratio, 3)
+    dif = abs(iter_ratio_r - ratio)
+
+    if iter_ratio_r > ratio:
+        iter_ancho += 1
+        iter_alto, iter_ancho = getDimentions(iter_alto, iter_ancho, ratio)
+        return (iter_alto, iter_ancho)
+    if iter_ratio_r < ratio:
+        iter_alto += 1
+        iter_alto, iter_ancho = getDimentions(iter_alto, iter_ancho, ratio)
+        return (iter_alto, iter_ancho)
+    if dif <= 0.01:
+        return np.array([iter_ancho, iter_alto])
